@@ -1,0 +1,9 @@
+cc_binary(
+    name = "average",
+    srcs = ["average.cpp"],
+)
+
+cc_binary(
+    name="star",
+    srcs=["star.cpp"]
+)
