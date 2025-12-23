@@ -1,17 +1,11 @@
 #include <iostream>
 
 void draws_stars_around_text(const std::vector<std::string>& messages, size_t maximum_length);
-
+void input_messages(std::vector<std::string>& messages, size_t& maximum_length);
 int main() {
     std::vector<std::string> messages;
-
     size_t maximum_length = 0;
-    std::string line;
-
-    while(getline(std::cin, line)) {
-        messages.push_back(line);
-        maximum_length = std::max(maximum_length, line.size());
-    }
+    input_messages(messages, maximum_length);
 
     draws_stars_around_text(messages, maximum_length);
 
@@ -33,4 +27,12 @@ void draws_stars_around_text(const std::vector<std::string>& messages, size_t ma
 
     // Lower border
     std::cout << stars_line << std::endl;   
+}
+
+void input_messages(std::vector<std::string>& messages, size_t& maximum_length) {
+    std::string line;
+    while(getline(std::cin, line)) {
+        messages.push_back(line);
+        maximum_length = std::max(maximum_length, line.size());
+    }
 }
