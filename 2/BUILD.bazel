@@ -1,0 +1,9 @@
+cc_binary(
+    name = "ptrs1",
+    srcs = ["pointers1.cpp"],
+)
+
+cc_binary(
+    name="sharedptr",
+    srcs=["sharedptr.cpp"]
+)
