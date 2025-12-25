@@ -1,14 +1,19 @@
 cc_binary(
     name = "ptrs1",
-    srcs = ["pointers1.cpp"],
+    srcs = ["common.hpp", "pointers1.cpp"],
 )
 
 cc_binary(
     name="sharedptr",
-    srcs=["sharedptr.cpp"]
+    srcs=["common.hpp", "sharedptr.cpp"]
 )
 
 cc_binary(
     name="uniqueptr",
-    srcs=["uniqueptr.cpp"]
+    srcs=["common.hpp", "uniqueptr.cpp"]
+)
+
+cc_binary(
+    name="raii",
+    srcs=["raii.cpp"]
 )

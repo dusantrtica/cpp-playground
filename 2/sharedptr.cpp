@@ -2,20 +2,9 @@
 #include <sstream>
 #include <memory>
 
-struct student {
-    student(const std::string& name, const std::string& surname) : m_name(name), m_surname(surname) {
-        std::stringstream ss;
-        ss << "Student: " << m_name << " " << m_surname;
-        std::cout << ss.str() << std::endl;
-    }
+#include "./common.hpp"
 
-    std::string m_name;
-    std::string m_surname;
-
-    ~student() {
-        std::cout << "Destructor called for " << m_name << " " << m_surname << std::endl;
-    }
-};
+using namespace common;
 
 void print_student(const std::shared_ptr<student>& s) {
     std::cout << s->m_name << " " << s->m_surname << std::endl;
