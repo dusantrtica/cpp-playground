@@ -17,3 +17,13 @@ cc_binary(
     name="raii",
     srcs=["raii.cpp"]
 )
+
+cc_binary(
+    name="fraction",
+    srcs=["fraction.hpp", "fraction.cpp"]
+)
+
+cc_binary(
+    name="list",
+    srcs=["list.hpp", "list.cpp"],
+)
