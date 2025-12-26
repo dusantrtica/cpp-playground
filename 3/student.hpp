@@ -15,7 +15,7 @@ enum class Studies {
 class student {
 public:
     student(const std::string& name, Studies studies) : m_name(name), m_studies(studies) {}
-    ~student() {
+    virtual ~student() {
         std::cout << "~student()" << std::endl;
     }
     void add_grade(int grade) {
