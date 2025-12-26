@@ -1,0 +1,4 @@
+cc_binary(
+    name="student",
+    srcs=["student.hpp", "student.cpp"]
+)
