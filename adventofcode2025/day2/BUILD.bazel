@@ -1,0 +1,14 @@
+
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_binary(
+    name="day2",
+    srcs=["code.hpp", "code.cpp"]
+)
+
+cc_test(
+    name = "day2test",
+    srcs = ["code.hpp", "code.cpp", "code.test.cpp"],
+    deps = ["@catch2//:catch2", "@catch2//:catch2_main"]
+    # Add visibility if needed, e.g., visibility = ["//test:__subpackages__"]
+)
