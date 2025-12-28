@@ -5,4 +5,5 @@
 #include <iostream>
 
 int largest_number_in_string(const std::string& input);
+unsigned long long largest_number_in_string_pt2(const std::string& input);
 #endif

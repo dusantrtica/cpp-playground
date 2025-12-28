@@ -30,6 +30,22 @@ TEST_CASE("") {
     REQUIRE(largest_number_in_string("2342222332222272222432421224223245222124221224321242411222237231231217442234312223223122222112227422") == 77);
   }
 
+  SECTION("largest number in section, 12 digits case 1") {
+    REQUIRE(largest_number_in_string_pt2("987654321111111") == 987654321111);
+  }
+
+  SECTION("largest number in section, 12 digits case 2") {
+    REQUIRE(largest_number_in_string_pt2("811111111111119") == 811111111119);
+  }
+
+  SECTION("largest number in section, 12 digits case 3") {
+    REQUIRE(largest_number_in_string_pt2("234234234234278") == 434234234278);
+  }
+
+  SECTION("largest number in section, 12 digits case 4") {
+    REQUIRE(largest_number_in_string_pt2("818181911112111") == 888911112111);
+  }
+
   SECTION("largest number from assignment") {
     const std::string input = R"(
 2353224242223333222212222212122232212325242222323234222233222242242213332433221534222221224132232122
@@ -238,13 +254,25 @@ TEST_CASE("") {
         input | std::views::split('\n') |
         std::views::transform([](const auto &line) {
             auto str_line = std::string(std::string_view(line));
-            auto largest_num = largest_number_in_string(str_line);
-            std::cout << "L number is " << largest_num << std::endl;
+            auto largest_num = largest_number_in_string(str_line);            
           return largest_num;
         })
         | std::views::filter([](int num) { return num >= 0; });
 
     int sum = std::ranges::fold_left(largest_numbers_view, 0, std::plus<>{});
     std::cout << "Sum = " << sum << std::endl;
+
+    auto largest_numbers_view_part_2 =
+        input | std::views::split('\n') |
+        std::views::transform([](const auto &line) {
+            auto str_line = std::string(std::string_view(line));
+            auto largest_num = largest_number_in_string_pt2(str_line);   
+            std::cout << "largest num in pt2 " << largest_num << '\n';         
+          return largest_num;
+        })
+        | std::views::filter([](unsigned long long num) { return num >= 0ul; });
+
+    unsigned long long sum_part2 = std::ranges::fold_left(largest_numbers_view_part_2, 0, std::plus<>{});
+    std::cout << "Sum for part 2 = " << sum_part2 << std::endl;
   }
 }

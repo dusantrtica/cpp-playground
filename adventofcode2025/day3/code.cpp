@@ -24,3 +24,26 @@ int largest_number_in_string(const std::string& input) {
     }
     return a*10 + b;
 }
+
+unsigned long long largest_number_in_string_pt2(const std::string& input) {
+    const int len = input.length();
+    const int num_digits = 12;
+    std::string number = "";
+
+    int index_of_last_added_digit = 0;
+    for(int i = 0; i < num_digits; i++) {        
+        for(int j = index_of_last_added_digit; j <= len-(num_digits-i); j++) {
+            if(input[j] > input[index_of_last_added_digit]) {
+                index_of_last_added_digit = j;
+            }
+        }
+        number += input[index_of_last_added_digit];
+        index_of_last_added_digit++;
+    }
+    std::cout<<"found number " << number;
+    try {
+        return std::stoull(number);
+    } catch(...) {
+        return 0ul;
+    }
+}
