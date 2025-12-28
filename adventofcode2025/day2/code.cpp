@@ -75,3 +75,20 @@ unsigned long sum_invalid_ids_in_ranges(const std::vector<std::pair<std::string,
 
     return sum_of_invalid_ids;
 }
+
+
+void generate_invalid_ids_pt2(unsigned long end_number, std::set<unsigned long>& invalid_ids) {
+    for(unsigned int i = 1; i <= end_number; i++) {
+        auto str_i = std::to_string(i);
+        auto invalid_id_part = str_i;
+        while(true) {
+            invalid_id_part += str_i;
+            auto invalid_id = std::stoul(invalid_id_part);
+            if(invalid_id <= end_number) {
+                invalid_ids.insert(invalid_id);
+            } else {
+                break;
+            }
+        }
+    }
+}

@@ -2,6 +2,8 @@
 #include "catch2/catch_test_macros.hpp" // Or "catch.hpp" for the single-header version
 #include <fstream>
 #include <iostream>
+#include <set>
+#include <string>
 
 TEST_CASE("Day 2 test case") {
    SECTION("Largest end range digits test") {
@@ -44,4 +46,10 @@ TEST_CASE("Day 2 test case") {
     parse_ranges(ranges_input, ranges);
     std::cout << "sum of all invalid ids " << sum_invalid_ids_in_ranges(ranges);
    };
+
+   SECTION("invalid ids part 2 ") {
+    std::set<unsigned long> invalid_ids;
+    generate_invalid_ids_pt2(10000, invalid_ids);
+    std::println("Set contents: {}", invalid_ids);
+   }
 }
