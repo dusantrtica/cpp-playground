@@ -1,5 +1,6 @@
 #include "code.hpp"
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <ranges>
 #include <string>
@@ -71,14 +72,12 @@ unsigned long sum_invalid_ids_in_ranges(const std::vector<std::pair<std::string,
             } 
         }
     }
-
-
     return sum_of_invalid_ids;
 }
 
 
 void generate_invalid_ids_pt2(unsigned long end_number, std::set<unsigned long>& invalid_ids) {
-    for(unsigned int i = 1; i <= end_number; i++) {
+    for(unsigned int i = 1; i <= std::sqrt(end_number); i++) {
         auto str_i = std::to_string(i);
         auto invalid_id_part = str_i;
         while(true) {
@@ -91,4 +90,26 @@ void generate_invalid_ids_pt2(unsigned long end_number, std::set<unsigned long>&
             }
         }
     }
+}
+
+
+unsigned long sum_invalid_ids_in_ranges_pt2(const std::vector<std::pair<std::string, std::string>> &ranges) {
+    auto number_of_digits = largest_end_range_digits(ranges);
+    std::set<unsigned long> invalid_ids;
+    unsigned long sum_of_invalid_ids = 0;
+    generate_invalid_ids_pt2(std::pow(10, number_of_digits), invalid_ids);
+
+    for (const auto& range : ranges) {
+        const auto begin = std::stoul(range.first);
+        const auto end = std::stoul(range.second);
+
+        for(const auto& invalid_id : invalid_ids) {       
+            
+            if(begin <= invalid_id && invalid_id <= end) {
+                sum_of_invalid_ids += invalid_id;
+            } 
+        }
+    }
+
+    return sum_of_invalid_ids;
 }
