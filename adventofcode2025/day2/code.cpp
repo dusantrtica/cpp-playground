@@ -26,6 +26,14 @@ void parse_ranges(const std::string &input, std::vector<std::pair<std::string, s
     ranges.clear();
     auto comma_split = input 
         | std::views::split(',')
+        | std::views::transform([](const auto& range) {
+            // Convert range to string_view
+            std::string tmp;
+            for (auto c : range) tmp.push_back(c);
+            return tmp;
+        });
+
+    auto dash_split_view = comma_split
         | std::views::transform([](const std::string& item) {
             auto dash_split = item
                 | std::views::split('-')
@@ -41,7 +49,7 @@ void parse_ranges(const std::string &input, std::vector<std::pair<std::string, s
             return parts;
         });
 
-    for (const auto& parts : comma_split) {
+    for (const auto& parts : dash_split_view) {
         if (parts.size() != 2) continue;
         ranges.emplace_back(parts[0], parts[1]);
     }
