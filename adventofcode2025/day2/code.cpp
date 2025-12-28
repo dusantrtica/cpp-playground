@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <ranges>
+#include <string>
 #include <vector>
 
 int largest_end_range_digits(const std::vector<std::pair<std::string, std::string>> &ranges) {
@@ -24,17 +25,14 @@ void generate_invalid_ids(const int number_of_digits,
 
 void parse_ranges(const std::string &input, std::vector<std::pair<std::string, std::string>> &ranges) {
     ranges.clear();
-    auto comma_split = input 
+    auto dash_split_view = input 
         | std::views::split(',')
         | std::views::transform([](const auto& range) {
-            // Convert range to string_view
-            std::string tmp;
-            for (auto c : range) tmp.push_back(c);
-            return tmp;
-        });
-
-    auto dash_split_view = comma_split
-        | std::views::transform([](const std::string& item) {
+            // Convert comma-split range to string
+            std::string item;
+            for (auto c : range) item.push_back(c);
+            
+            // Split by dash and collect parts
             auto dash_split = item
                 | std::views::split('-')
                 | std::views::transform([](const auto& subrange) {
@@ -56,5 +54,24 @@ void parse_ranges(const std::string &input, std::vector<std::pair<std::string, s
     return;
 }
 
-int sum_invalid_ids_in_ranges(
-    const std::vector<std::pair<std::string, std::string>> &ranges) {}
+
+unsigned long sum_invalid_ids_in_ranges(const std::vector<std::pair<std::string, std::string>> &ranges) {
+    auto number_of_digits = largest_end_range_digits(ranges);
+    std::vector<std::string> invalid_ids;
+    generate_invalid_ids(number_of_digits, invalid_ids);
+    auto sum_of_invalid_ids = 0ul;    
+    for (const auto& range : ranges) {
+        const auto begin = std::stoul(range.first);
+        const auto end = std::stoul(range.second);
+
+        for(const auto& invalid_id : invalid_ids) {       
+            auto n_invalid_id = std::stoul(invalid_id);     
+            if(begin <= n_invalid_id && n_invalid_id <= end) {
+                sum_of_invalid_ids += n_invalid_id;
+            } 
+        }
+    }
+
+
+    return sum_of_invalid_ids;
+}
