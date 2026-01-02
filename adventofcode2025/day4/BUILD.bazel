@@ -2,7 +2,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_binary(
-    name="day3",
+    name="day4",
     srcs=["code.hpp", "code.cpp"]
 )
 

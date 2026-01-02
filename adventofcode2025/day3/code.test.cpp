@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <numeric>   // Required for std::ranges::fold_left
 
-TEST_CASE("") {
+TEST_CASE("day 3") {
   SECTION("largest number in string 1") {
     REQUIRE(largest_number_in_string("987654321111111") == 98);
   }

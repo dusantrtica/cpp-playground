@@ -14,6 +14,6 @@ public:
   T2 second;
 };
 
-template <typename T1, template T2> pair<T1, T2> make_pair(T1 t1, T2 t2) {
+template <typename T1, typename T2> pair<T1, T2> make_pair(T1 t1, T2 t2) {
   return pair<T1, T2>(t1, t2);
 }
