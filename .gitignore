@@ -7,3 +7,4 @@ bazel-workspace.lock
 a.out
 */a.out
 **/a.out
+**/*.pch
