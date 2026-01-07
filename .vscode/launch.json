@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Launch",
+      "program": "${workspaceFolder}/<program>",
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceRoot}/<your program>",
+      "args": [],
+      "cwd": "${workspaceRoot}"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/dusantrtica/projects/cpp-playground/adventofcode2025/day5",
+      "program": "/Users/dusantrtica/projects/cpp-playground/adventofcode2025/day5/build/Debug/outDebug"
+    }
+  ]
+}
